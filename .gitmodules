@@ -1,0 +1,3 @@
+[submodule "WebGLDeveloperTools"]
+	path = WebGLDeveloperTools
+	url = git@github.com:KhronosGroup/WebGLDeveloperTools.git

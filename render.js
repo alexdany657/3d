@@ -1,4 +1,5 @@
-function drawScene(gl, programInfo, buffers) {
+function drawScene(gl, programInfo, buffers, deltaTime) {
+
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clearDepth(1.0);
     gl.enable(gl.DEPTH_TEST);
@@ -6,7 +7,7 @@ function drawScene(gl, programInfo, buffers) {
 
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    const fieldOfView = Math.Pi / 4;
+    const fieldOfView = Math.PI / 4;
     const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
     const zNear = 0.1;
     const zFar = 100.0;
@@ -18,14 +19,15 @@ function drawScene(gl, programInfo, buffers) {
     const modelViewMatrix = mat4.create();
 
     mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -6.0]);
+    mat4.rotate(modelViewMatrix, modelViewMatrix, Math.PI / 6, [1, 0, 0]);
+    mat4.rotate(modelViewMatrix, modelViewMatrix, squareRotation, [0, 1, 0]);
 
     {
-        const numComponents = 2;  // pull out 2 values per iteration
-        const type = gl.FLOAT;    // the data in the buffer is 32bit floats
-        const normalize = false;  // don't normalize
-        const stride = 0;         // how many bytes to get from one set of values to the next
-                                  // 0 = use type and numComponents above
-        const offset = 0;         // how many bytes inside the buffer to start from
+        const numComponents = 3;
+        const type = gl.FLOAT;
+        const normalize = false;
+        const stride = 0;
+        const offset = 0;
         gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
         gl.vertexAttribPointer(
             programInfo.attribLocations.vertexPosition,
@@ -38,7 +40,55 @@ function drawScene(gl, programInfo, buffers) {
             programInfo.attribLocations.vertexPosition);
     }
 
+    {
+        const numComponents = 4;
+        const type = gl.FLOAT;
+        const normalize = false;
+        const stride = 0;
+        const offset = 0;
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffers.color);
+        gl.vertexAttribPointer(
+            programInfo.attribLocations.vertexColor,
+            numComponents,
+            type,
+            normalize,
+            stride,
+            offset);
+        gl.enableVertexAttribArray(
+            programInfo.attribLocations.vertexColor);
+    }
+
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.indices);
+
     gl.useProgram(programInfo.program);
 
-    //TODO write ...
+    gl.uniformMatrix4fv(
+        programInfo.uniformLocations.projectionMatrix,
+        false,
+        projectionMatrix
+    );
+    gl.uniformMatrix4fv(
+        programInfo.uniformLocations.modelViewMatrix,
+        false,
+        modelViewMatrix
+    );
+
+    {
+        const vertexCount = 36;
+        const type = gl.UNSIGNED_SHORT;
+        const offset = 0;
+        gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
+    }
+
+    squareRotation += deltaTime;
+}
+
+function render(now) {
+    now *= 0.001;
+    const deltaTime = now - then;
+    then = now;
+
+    drawScene(gl, window.programInfo, window.buff, deltaTime);
+
+    requestAnimationFrame(render);
 }

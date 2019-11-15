@@ -1,29 +1,22 @@
-function update() {
-    1;
+async function main1() {
+    await setVsSource("VertexShader.glsl");
+    await setFsSource("FragmentShader.glsl");
+    start(vsSource, fsSource);
 }
 
-async function main() {
-
-    const canvas = document.getElementById("cnvs");
-
-    const gl = canvas.getContext("webgl");
+function start(vsSource, fsSource) {
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    await setVsSource("VertexShader.glsl");
-    await setFsSource("FragmentShader.glsl");
-
-    console.log(vsSource);
-    console.log(fsSource);
-
     const shaderProgram = initShader(gl, vsSource, fsSource);
 
-    const programInfo = {
+    window.programInfo = {
         program: shaderProgram,
         attribLocations: {
             vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
+            vertexColor: gl.getAttribLocation(shaderProgram, 'aVertexColor'),
         },
         uniformLocations: {
             projectionMatrix: gl.getUniformLocation(shaderProgram, 'uProjectionMatrix'),
@@ -31,7 +24,9 @@ async function main() {
         },
     };
 
-    console.log(shaderProgram);
+    window.buff = createGeometry(gl);
+
+    requestAnimationFrame(render);
 }
 
-main();
+main1();
