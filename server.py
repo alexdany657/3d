@@ -33,6 +33,15 @@ class Handler(BaseHTTPRequestHandler):
             if self.path.endswith(".glsl"):
                 mimetype = "text/palin"
                 sendReply = True
+            if self.path.endswith(".obj"):
+                mimetype = "text/plain"
+                sendReply = True
+            if self.path.endswith(".mtl"):
+                mimetype = "text/plain"
+                sendReply = True
+            if self.path.endswith(".bmp"):
+                mimetype = "image/bmp"
+                sendReply = True
 
             if sendReply:
                 f = open("." + self.path, "rb")

@@ -1,6 +1,7 @@
 async function main1() {
     await setVsSource("VertexShader.glsl");
     await setFsSource("FragmentShader.glsl");
+    await loadMesh();
     start(vsSource, fsSource);
 }
 

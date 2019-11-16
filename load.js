@@ -16,5 +16,5 @@ async function loadMesh() {
     mtlSource = await (await load(mtlUrl)).text();
     bmpSource = await (await load(bmpUrl)).text();
 
-    // parse 
+    //parseOBJ();
 }

@@ -10,7 +10,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     const fieldOfView = Math.PI / 4;
     const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
     const zNear = 0.1;
-    const zFar = 100.0;
+    const zFar = 200.0;
 
     const projectionMatrix = mat4.create();
 
@@ -18,7 +18,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
 
     const modelViewMatrix = mat4.create();
 
-    mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -6.0]);
+    mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -100.0]);
     mat4.rotate(modelViewMatrix, modelViewMatrix, Math.PI / 6, [1, 0, 0]);
     mat4.rotate(modelViewMatrix, modelViewMatrix, squareRotation, [0, 1, 0]);
 
