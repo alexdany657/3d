@@ -26,7 +26,7 @@ function start(vsSource, fsSource) {
         },
     };
 
-    window.buff = createGeometry(gl);
+    //window.buff = createGeometry(gl);
 
     requestAnimationFrame(render);
 }

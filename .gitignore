@@ -1,4 +1,6 @@
 # vim tmp files
-
 *.swp
 *.swo
+
+# python import
+__pycache__/*

@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler,HTTPServer
-import json, os
+import json, os, parser
 
 PORT_NUMBER = 5000
 
@@ -55,7 +55,11 @@ class Handler(BaseHTTPRequestHandler):
             self.send_error(404, "File Not Found: " + self.path)
 
     def do_POST(self):
-        pass
+        mesh = parser.parseOBJ(self.path[1:])
+        self.send_response(200)
+        self.send_header("Cantent-type", "text/plain")
+        self.end_headers()
+        self.wfile.write(bytes(json.dumps(mesh), "utf-8"))
 
 try:
     server = HTTPServer(("", PORT_NUMBER), Handler)

@@ -1,6 +1,6 @@
-function drawScene(gl, programInfo, buffers, deltaTime) {
+function drawScene(gl, programInfo, buffers, texture, deltaTime) {
 
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clearColor(0.5, 0.5, 1.0, 1.0);
     gl.clearDepth(1.0);
     gl.enable(gl.DEPTH_TEST);
     gl.depthFunc(gl.LEQUAL);
@@ -10,7 +10,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     const fieldOfView = Math.PI / 4;
     const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
     const zNear = 0.1;
-    const zFar = 200.0;
+    const zFar = 10000.0;
 
     const projectionMatrix = mat4.create();
 
@@ -18,7 +18,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
 
     const modelViewMatrix = mat4.create();
 
-    mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -100.0]);
+    mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -5000.0]);
     mat4.rotate(modelViewMatrix, modelViewMatrix, Math.PI / 6, [1, 0, 0]);
     mat4.rotate(modelViewMatrix, modelViewMatrix, squareRotation, [0, 1, 0]);
 
@@ -48,14 +48,14 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
         const offset = 0;
         gl.bindBuffer(gl.ARRAY_BUFFER, buffers.textureCoord);
         gl.vertexAttribPointer(
-            programInfo.attribLocations.vertexColor,
-            numComponents,
+            programInfo.attribLocations.textureCoord,
+            num,
             type,
             normalize,
             stride,
             offset);
         gl.enableVertexAttribArray(
-            programInfo.attribLocations.vertexColor);
+            programInfo.attribLocations.textureCoord);
     }
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.indices);
@@ -73,8 +73,12 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
         modelViewMatrix
     );
 
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.uniform1i(programInfo.uniformLocations.uSampler, 0);
+
     {
-        const vertexCount = 36;
+        const vertexCount = window.vCount;
         const type = gl.UNSIGNED_SHORT;
         const offset = 0;
         gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
@@ -88,7 +92,7 @@ function render(now) {
     const deltaTime = now - then;
     then = now;
 
-    drawScene(gl, window.programInfo, window.buff, deltaTime);
+    drawScene(gl, window.programInfo, window.buff, window.texture, deltaTime);
 
     requestAnimationFrame(render);
 }
