@@ -32,7 +32,7 @@ function createGeometry(gl) {
         -1.0,  1.0, -1.0,
     ];
 
-    const colors = [
+    /*const colors = [
         1.0,  1.0,  1.0,  1.0,
         1.0,  1.0,  1.0,  1.0,
         1.0,  1.0,  1.0,  1.0,
@@ -62,7 +62,7 @@ function createGeometry(gl) {
         1.0,  0.0,  1.0,  1.0,
         1.0,  0.0,  1.0,  1.0,
         1.0,  0.0,  1.0,  1.0,
-    ];
+    ];*/
 
     const indices = [
          0,  1,  2,  0,  2,  3,
@@ -73,21 +73,57 @@ function createGeometry(gl) {
         20, 21, 22, 20, 22, 23,
     ];
 
+    const texCoords = [
+        0.0,  0.0,
+        1.0,  0.0,
+        1.0,  1.0,
+        0.0,  1.0,
+
+        0.0,  0.0,
+        1.0,  0.0,
+        1.0,  1.0,
+        0.0,  1.0,
+
+        0.0,  0.0,
+        1.0,  0.0,
+        1.0,  1.0,
+        0.0,  1.0,
+
+        0.0,  0.0,
+        1.0,  0.0,
+        1.0,  1.0,
+        0.0,  1.0,
+
+        0.0,  0.0,
+        1.0,  0.0,
+        1.0,  1.0,
+        0.0,  1.0,
+
+        0.0,  0.0,
+        1.0,  0.0,
+        1.0,  1.0,
+        0.0,  1.0,
+    ];
+
     const positionBuff = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuff);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pos), gl.STATIC_DRAW);
 
-    const colorBuffer = gl.createBuffer();
+    /*const colorBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);*/
 
     const indexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
 
+    const textureCoordBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoordinates), gl.STATIC_DRAW);
+
     return {
         position: positionBuff,
-        color: colorBuffer,
+        textureCoord: textureCoordBuffer,
         indices: indexBuffer,
     };
 }

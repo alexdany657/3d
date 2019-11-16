@@ -41,12 +41,12 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     }
 
     {
-        const numComponents = 4;
+        const num = 2;
         const type = gl.FLOAT;
         const normalize = false;
         const stride = 0;
         const offset = 0;
-        gl.bindBuffer(gl.ARRAY_BUFFER, buffers.color);
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffers.textureCoord);
         gl.vertexAttribPointer(
             programInfo.attribLocations.vertexColor,
             numComponents,

@@ -14,7 +14,9 @@ async function load(url) {
 async function loadMesh() {
     objSource = await (await load(objUrl)).text();
     mtlSource = await (await load(mtlUrl)).text();
-    bmpSource = await (await load(bmpUrl)).text();
+    // bmpSource = await (await load(bmpUrl)).text();
+
+    window.texture = loadTexture(gl, 'cubetexture.png');
 
     //parseOBJ();
 }
