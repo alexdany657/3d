@@ -105,7 +105,7 @@ function createGeometry(gl, mesh) {
         0.0,  1.0,
     ];*/
 
-    console.log(mesh.v.length / 3, mesh.f.length / 3, mesh.ft.length / 2);
+    //console.log(mesh.v.length / 3, mesh.f.length / 3, mesh.ft.length / 2);
 
     const positionBuff = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuff);
@@ -121,7 +121,7 @@ function createGeometry(gl, mesh) {
 
     const textureCoordBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(mesh.ft), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(mesh.tc), gl.STATIC_DRAW);
 
     return {
         position: positionBuff,
