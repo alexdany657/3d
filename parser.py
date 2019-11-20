@@ -17,7 +17,7 @@ def parseOBJ(objPath: str) -> dict:
         elif (a[0] == "vn"):
             vn.extend([float(a[1]), float(a[2]), float(a[3])])
         elif (a[0] == "vt"):
-            vt.extend([float(a[1]), float(a[2])])
+            vt.extend([1.0 - float(a[1]), 1.0 - float(a[2])])
         elif (a[0] == "f"):
             ar1 = a[1].split('/')
             ar2 = a[2].split('/')
