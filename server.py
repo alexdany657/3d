@@ -39,8 +39,8 @@ class Handler(BaseHTTPRequestHandler):
             if self.path.endswith(".mtl"):
                 mimetype = "text/plain"
                 sendReply = True
-            if self.path.endswith(".bmp"):
-                mimetype = "image/bmp"
+            if self.path.endswith(".jpg"):
+                mimetype = "image/jpg"
                 sendReply = True
 
             if sendReply:
