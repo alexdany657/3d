@@ -19,7 +19,9 @@ async function loadMesh() {
     mesh = await (await fetch(objUrl, {method: "post"})).json()
     window.vCount = mesh.v.length / 3;
     console.log(vCount);
-    console.log(mesh);
+    // console.log(mesh);
+
+    console.log(mesh.fn.length);
 
     window.texture = loadTexture(gl, pngUrl);
 

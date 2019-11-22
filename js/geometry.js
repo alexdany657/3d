@@ -123,9 +123,14 @@ function createGeometry(gl, mesh) {
     gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(mesh.tc), gl.STATIC_DRAW);
 
+    const normalBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(mesh.fn), gl.STATIC_DRAW);
+
     return {
         position: positionBuff,
         textureCoord: textureCoordBuffer,
         indices: indexBuffer,
+        normal: normalBuffer,
     };
 }
