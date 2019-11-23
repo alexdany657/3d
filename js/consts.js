@@ -11,18 +11,24 @@ var then = 0;
 
 var rot = 1;
 
-var sasha = true;
+var flag = "sasha_20k";
 
 var objUrl = "";
 var pngUrl = "";
 var ZFar = 0;
 
-if (sasha) {
-    var ZFar = -2000.0;
-    var objUrl = "objects/sasha/sasha_20000.obj";
-    var pngUrl = "objects/sasha/sasha_0.png";
+if (flag == "sasha_20k") {
+    ZFar = -2000.0;
+    objUrl = "objects/sasha/sasha_20000.obj";
+    pngUrl = "objects/sasha/sasha_0.png";
+} else if (flag == "sasha_50k") {
+    ZFar = -2000.0;
+    objUrl = "objects/sasha/sasha_50000.obj";
+    pngUrl = "objects/sasha/sasha_0.png";
+} else if (flag == "cube") {
+    ZFar = -6.0;
+    objUrl = "objects/cube/cube.obj";
+    pngUrl = "objects/cube/cube_1.png";
 } else {
-    var ZFar = -6.0;
-    var objUrl = "objects/cube/cube.obj";
-    var pngUrl = "objects/cube/cube_1.png";
+    alert("Bad flag!");
 }
