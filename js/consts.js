@@ -9,12 +9,20 @@ var fsSource = "";
 var squareRotation = 0.0;
 var then = 0;
 
-//var ZFar = -2000.0;
-var ZFar = -6.0;
+var rot = 1;
 
-const objUrl = "objects/cube/cube.obj";
-//const objUrl = "objects/cube/cube.obj";
-const mtlUrl = "objects/sasha/sasha.mtl";
-const bmpUrl = "objects/sasha/sasha.bmp";
-const pngUrl = "objects/cube/cube_1.png";
-//const pngUrl = "objects/cube/cube_0.png";
+var sasha = true;
+
+var objUrl = "";
+var pngUrl = "";
+var ZFar = 0;
+
+if (sasha) {
+    var ZFar = -2000.0;
+    var objUrl = "objects/sasha/sasha_20000.obj";
+    var pngUrl = "objects/sasha/sasha_0.png";
+} else {
+    var ZFar = -6.0;
+    var objUrl = "objects/cube/cube.obj";
+    var pngUrl = "objects/cube/cube_1.png";
+}

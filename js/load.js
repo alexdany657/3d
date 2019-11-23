@@ -21,6 +21,8 @@ async function loadMesh() {
     console.log(vCount);
     console.log(mesh);
 
+    console.log(mesh.fn.length);
+
     window.texture = loadTexture(gl, pngUrl);
 
     window.buff = createGeometry(gl, mesh);

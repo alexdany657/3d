@@ -19,8 +19,12 @@ function drawScene(gl, programInfo, buffers, texture, deltaTime) {
     const modelViewMatrix = mat4.create();
 
     mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, ZFar]);
-    mat4.rotate(modelViewMatrix, modelViewMatrix, -Math.PI / 6.0, [1, 0, 0]);
+    mat4.rotate(modelViewMatrix, modelViewMatrix, rot * Math.PI / 6.0, [1, 0, 0]);
     mat4.rotate(modelViewMatrix, modelViewMatrix, squareRotation, [0, 1, 0]);
+
+    const normalMatrix = mat4.create();
+    mat4.invert(normalMatrix, modelViewMatrix);
+    mat4.transpose(normalMatrix, normalMatrix);
 
     {
         const numComponents = 3;
@@ -58,6 +62,24 @@ function drawScene(gl, programInfo, buffers, texture, deltaTime) {
             programInfo.attribLocations.textureCoord);
     }
 
+    {
+        const numComponents = 3;
+        const type = gl.FLOAT;
+        const normalize = false;
+        const stride = 0;
+        const offset = 0;
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffers.normal);
+        gl.vertexAttribPointer(
+            programInfo.attribLocations.vertexNormal,
+            numComponents,
+            type,
+            normalize,
+            stride,
+            offset);
+        gl.enableVertexAttribArray(
+            programInfo.attribLocations.vertexNormal);
+    }
+
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.indices);
 
     gl.useProgram(programInfo.program);
@@ -73,6 +95,12 @@ function drawScene(gl, programInfo, buffers, texture, deltaTime) {
         modelViewMatrix
     );
 
+    gl.uniformMatrix4fv(
+        programInfo.uniformLocations.normalMatrix,
+        false,
+        normalMatrix
+    );
+
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, texture);
     gl.uniform1i(programInfo.uniformLocations.uSampler, 0);
@@ -85,6 +113,7 @@ function drawScene(gl, programInfo, buffers, texture, deltaTime) {
     }
 
     squareRotation += deltaTime;
+    //squareRotation = rot;
 }
 
 function render(now) {
