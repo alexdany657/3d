@@ -17,7 +17,7 @@ def parseOBJ(objPath: str) -> dict:
         elif (a[0] == "vn"):
             vn.extend([float(a[1]), float(a[2]), float(a[3])])
         elif (a[0] == "vt"):
-            vt.extend([1.0 - float(a[1]), 1.0 - float(a[2])])
+            vt.extend([float(a[1]), float(a[2])])
         elif (a[0] == "f"):
             ar1 = a[1].split('/')
             ar2 = a[2].split('/')
@@ -43,16 +43,21 @@ def parseOBJ(objPath: str) -> dict:
     # vtUsed = set() --- it's already ok
     for i in range(len(f)):
         vCoords = [v[3 * f[i]], v[3 * f[i] + 1], v[3 * f[i] + 2]]
-        if (ft != []):
-            tCoords = [vt[2 * ft[i]], vt[2 * ft[i] + 1]]
         if (f[i] in vUsed):
+            f[i] = len(v) // 3
             v.extend(vCoords)
-            f[i] = len(v) // 3 - 1
         else:
             vUsed.add(f[i])
         if (ft != []):
+            tCoords = [vt[2 * ft[i]], vt[2 * ft[i] + 1]]
             tc.extend(tCoords)
-    # print(*tc)
+    stoopid_cnt = 0
+    for i in range(len(tc) // 2):
+        print(tc[2 * i], tc[2 * i + 1])
+        stoopid_cnt += 1
+        if (stoopid_cnt == 3):
+            print()
+            stoopid_cnt = 0
     return {
         "v": v,
         "vn": vn,
