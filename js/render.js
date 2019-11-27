@@ -18,9 +18,12 @@ function drawScene(gl, programInfo, buffers, texture, deltaTime) {
 
     const modelViewMatrix = mat4.create();
 
-    mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, ZFar]);
-    mat4.rotate(modelViewMatrix, modelViewMatrix, rot * Math.PI / 6.0, [1, 0, 0]);
-    mat4.rotate(modelViewMatrix, modelViewMatrix, squareRotation, [0, 1, 0]);
+    var rx = window.controller.rotX;
+    var ry = window.controller.rotY;
+
+    mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, ZFar + window.controller.zDist * window.controller.zDistMult]);
+    mat4.rotate(modelViewMatrix, modelViewMatrix, rx, [1, 0, 0]);
+    mat4.rotate(modelViewMatrix, modelViewMatrix, ry, [0, 1, 0]);
 
     const normalMatrix = mat4.create();
     mat4.invert(normalMatrix, modelViewMatrix);
