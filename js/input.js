@@ -37,18 +37,20 @@ function onMouseLeave(event){
     onMouseUp(event);
 }
 
-function scrollHandler(event){
+/*function scrollHandler(event){
     var cScroll = window.pageYOffset;
     //console.log(cScroll - window.controller.defaultScroll);
     window.controller.zDist -= cScroll - window.controller.defaultScroll;
     window.scrollTo(0, window.controller.defaultScroll);
+}*/
+
+function wheelHandler(event){
+    window.controller.zDist -= event.deltaY;
 }
 
-window.scrollTo(0, window.controller.defaultScroll);
 canvas.onmousedown = onMouseDown;
 canvas.onmouseup = onMouseUp;
 canvas.onmousemove = onMouseMove;
 canvas.onmouseleave = onMouseLeave;
 canvas.onmouseenter = onMouseEnter;
-
-window.addEventListener('scroll', scrollHandler);
+canvas.addEventListener("wheel", wheelHandler);

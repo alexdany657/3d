@@ -1,4 +1,8 @@
 const canvas = document.getElementById("cnvs");
+
+canvas.width = document.documentElement.clientHeight-20;
+canvas.height = document.documentElement.clientHeight-20;
+
 const gl = canvas.getContext("webgl");
 
 const vertexShader = "glsl_shaders/VertexShader.glsl";
