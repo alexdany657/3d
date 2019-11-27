@@ -8,6 +8,11 @@ const gl = canvas.getContext("webgl");
 const vertexShader = "glsl_shaders/VertexShader.glsl";
 const fragmentShader = "glsl_shaders/FragmentShader.glsl";
 
+var fieldOfView = Math.PI / 4;
+var aspect = 1;
+var zNear = 0.1;
+var zFar = 10000.0;
+
 var vsSource = "";
 var fsSource = "";
 var squareRotation = 0.0;
