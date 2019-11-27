@@ -23,6 +23,6 @@ if (sasha) {
     var pngUrl = "objects/sasha/sasha_0.png";
 } else {
     var ZFar = -6.0;
-    var objUrl = "objects/cube/cube.obj";
-    var pngUrl = "objects/cube/cube_1.png";
+    var objUrl = "objects/ico/Icosaedr.obj";
+    var pngUrl = "objects/ico/texture.png";
 }
