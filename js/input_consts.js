@@ -7,6 +7,6 @@ window.controller = {
     rotX : 0,
     rotY : 0,
     zDist : 0,
-    defaultScroll : 400,
+    defaultScroll : document.documentElement.clientHeight / 4,
     zDistMult : 100,
 };
