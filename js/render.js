@@ -105,7 +105,7 @@ function drawScene(gl, programInfo, buffers, texture, deltaTime) {
 
     {
         const vertexCount = window.vCount;
-        const type = gl.UNSIGNED_SHORT;
+        const type = gl.UNSIGNED_INT;
         const offset = 0;
         gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
     }

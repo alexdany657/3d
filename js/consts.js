@@ -4,6 +4,7 @@ canvas.width = document.documentElement.clientHeight-20;
 canvas.height = document.documentElement.clientHeight-20;
 
 const gl = canvas.getContext("webgl");
+const uint32Ext = gl.getExtension("OES_element_index_uint");
 
 const vertexShader = "glsl_shaders/VertexShader.glsl";
 const fragmentShader = "glsl_shaders/FragmentShader.glsl";
@@ -28,7 +29,7 @@ var ZFar = 0;
 
 if (flag == "sasha_20k") {
     ZFar = -2000.0;
-    objUrl = "objects/sasha/sasha_20000.obj";
+    objUrl = "objects/sasha/sasha.obj";
     pngUrl = "objects/sasha/sasha_0.png";
 } else if (flag == "sasha_50k") {
     ZFar = -2000.0;
