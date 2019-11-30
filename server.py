@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler,HTTPServer
-import json, os, parser
+import json, os, Parser
 
 PORT_NUMBER = 5000
 
