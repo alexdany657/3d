@@ -17,7 +17,7 @@ async function loadMesh() {
     // bmpSource = await (await load(bmpUrl)).text();
 
     mesh = await (await fetch(objUrl, {method: "post"})).json()
-    window.vCount = mesh.v.length / 3;
+    window.vCount = mesh.f.length / 3;
     console.log(vCount);
     console.log(mesh);
 

@@ -21,13 +21,13 @@ var then = 0;
 
 var rot = 1;
 
-var flag = "sasha_20k";
+var flag = "cube";
 
 var objUrl = "";
 var pngUrl = "";
 var ZFar = 0;
 
-if (flag == "sasha_20k") {
+if (flag == "sasha") {
     ZFar = -2000.0;
     objUrl = "objects/sasha/sasha.obj";
     pngUrl = "objects/sasha/sasha_0.png";
