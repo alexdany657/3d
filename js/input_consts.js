@@ -9,4 +9,5 @@ window.controller = {
     zDist : 0,
     defaultScroll : document.documentElement.clientHeight / 4,
     zDistMult : 100,
+    //renderFlag : true,
 };

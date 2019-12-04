@@ -1,3 +1,9 @@
+function _render() {
+    // window.controller.renderFlag = true;
+    // VERY BAD
+    render(0);
+}
+
 function onMouseDown(event){
     controller.isMouseDown = 1;
     controller.lastX = event.x;
@@ -26,6 +32,7 @@ function onMouseMove(event){
     window.controller.rotX += window.controller.sensivity * dy;
     window.controller.lastX = event.x;
     window.controller.lastY = event.y;
+    _render();
 }
 
 function onMouseEnter(event){
@@ -46,6 +53,7 @@ function onMouseLeave(event){
 
 function wheelHandler(event){
     window.controller.zDist -= event.deltaY;
+    _render();
 }
 
 canvas.onmousedown = onMouseDown;

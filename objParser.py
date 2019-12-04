@@ -56,7 +56,7 @@ def parseOBJ(objPath: str) -> dict:
             vert.append(point(float(a[1]), float(a[2]), float(a[3])))
         elif (a[0] == "vt"):
             assert len(a) >= 3
-            tVert.append(texPoint(float(a[1]), float(a[2])))
+            tVert.append(texPoint(float(a[1]), 1-float(a[2])))
         elif (a[0] == "f"):
             if (len(a) > 4):
                 print("objParser: parseOBJ: only triangle faces supported")
@@ -66,7 +66,7 @@ def parseOBJ(objPath: str) -> dict:
                 if (len(f[i]) < 3):
                     f[i].extend([0] * (3 - len(f[i])))
             indices.append([])
-            normal = vec(vert[f[0][0]], vert[f[1][0]]) * vec(vert[f[0][0]], vert[f[2][0]])
+            normal = (vec(vert[f[0][0]], vert[f[1][0]]) * vec(vert[f[0][0]], vert[f[2][0]])).unitvector()
             for i in range(3):
                 tmpPoint = fullPoint(vert[f[i][0]], tVert[f[i][1]])
                 if (tmpPoint in vUsed):
@@ -97,5 +97,8 @@ def parseOBJ(objPath: str) -> dict:
         ans["fn"].extend([i.x, i.y, i.z])
     for i in indices:
         ans["f"].extend([i[k] for k in range(3)])
-    print(ans)
+    #print("v:", *ans["v"])
+    #print("f:", *ans["f"])
+    #print("tc:", *ans["tc"])
+    #print("fn:", *ans["fn#"])
     return ans

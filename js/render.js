@@ -1,4 +1,4 @@
-function drawScene(gl, programInfo, buffers, texture, deltaTime) {
+function drawScene(gl, programInfo, buffers, texture) {
 
     gl.clearColor(0.5, 0.5, 1.0, 1.0);
     gl.clearDepth(1.0);
@@ -110,16 +110,19 @@ function drawScene(gl, programInfo, buffers, texture, deltaTime) {
         gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
     }
 
-    squareRotation += deltaTime;
+    //squareRotation += deltaTime;
     //squareRotation = rot;
 }
 
 function render(now) {
-    now *= 0.001;
-    const deltaTime = now - then;
-    then = now;
+    //now *= 0.001;
+    //const deltaTime = now - then;
+    //then = now;
 
-    drawScene(gl, window.programInfo, window.buff, window.texture, deltaTime);
+    //if (window.controller.renderFlag) {
+    drawScene(gl, window.programInfo, window.buff, window.texture);
+    //    window.controller.renderFlag = false;
+    //}
 
-    requestAnimationFrame(render);
+    //requestAnimationFrame(render);
 }
