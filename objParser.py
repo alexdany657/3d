@@ -4,15 +4,24 @@ class point:
         self.y = y
         self.z = z
 
+    def __eq__(self, other) -> bool:
+        return self.x == other.x and self.y == other.y and self.z == other.z
+
 class texPoint:
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
+    def __eq__(self, other) -> bool:
+        return self.x == other.x and self.y == other.y
+
 class fullPoint:
     def __init__(self, point, texPoint):
         self.v = point
         self.vt = texPoint
+
+    def __eq__(self, other) -> bool:
+        return self.v == other.v and self.vt == other.vt
 
 class vector(point):
     def __add__(self, a):
@@ -70,7 +79,7 @@ def parseOBJ(objPath: str) -> dict:
             for i in range(3):
                 tmpPoint = fullPoint(vert[f[i][0]], tVert[f[i][1]])
                 if (tmpPoint in vUsed):
-                    indices[-1].append(vUsed.find(tmpPoint))
+                    indices[-1].append(vUsed.index(tmpPoint))
                 else:
                     indices[-1].append(len(vUsed))
                     vUsed.append(tmpPoint)

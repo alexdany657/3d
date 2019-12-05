@@ -33,7 +33,7 @@ class Handler(BaseHTTPRequestHandler):
                 mimetype = "image/svg+xml"
                 sendReply = True
             if self.path.endswith(".glsl"):
-                mimetype = "text/palin"
+                mimetype = "text/plain"
                 sendReply = True
             if self.path.endswith(".obj"):
                 mimetype = "text/plain"

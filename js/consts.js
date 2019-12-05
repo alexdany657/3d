@@ -21,7 +21,7 @@ var then = 0;
 
 var rot = 1;
 
-var flag = "sasha_20k";
+var flag = "cube";
 
 var objUrl = "";
 var pngUrl = "";

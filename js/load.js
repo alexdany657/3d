@@ -19,7 +19,7 @@ async function loadMesh() {
     mesh = await (await fetch(objUrl, {method: "post"})).json()
     window.vCount = mesh.f.length;
     console.log(vCount);
-    //console.log(mesh);
+    console.log(mesh);
 
     //console.log(mesh.fn.length);
 
