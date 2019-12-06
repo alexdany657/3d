@@ -43,6 +43,10 @@ if (flag == "sasha") {
     ZFar = -6.0;
     objUrl = "objects/cube/cube.obj";
     pngUrl = "objects/cube/cube_1.png";
+} else if (flag == "ico") {
+    ZFar = -6.0;
+    objUrl = "objects/ico/Icosaedr.obj";
+    pngUrl = "objects/ico/texture.png";
 } else {
     alert("Bad flag!");
 }

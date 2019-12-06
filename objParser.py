@@ -27,6 +27,9 @@ class vector(point):
     def __add__(self, a):
         return vector(self.x + a.x, self.y + a.y, self.z + a.z)
 
+    def __sub__(self, a):
+        return vector(self.x - a.x, self.y - a.y, self.z - a.z)
+
     def __mul__(self, a):
         return vector(self.y * a.z - self.z * a.y, self.z * a.x - self.x * a.z, self.x * a.y - self.y * a.x)
 
@@ -75,7 +78,10 @@ def parseOBJ(objPath: str) -> dict:
                 if (len(f[i]) < 3):
                     f[i].extend([0] * (3 - len(f[i])))
             indices.append([])
-            normal = (vec(vert[f[0][0]], vert[f[1][0]]) * vec(vert[f[0][0]], vert[f[2][0]])).unitvector()
+            print(f)
+            print(a)
+            print()
+            normal = vector(0,0,0) + (vec(vert[f[0][0]], vert[f[1][0]]) * vec(vert[f[0][0]], vert[f[2][0]])).unitvector()
             for i in range(3):
                 tmpPoint = fullPoint(vert[f[i][0]], tVert[f[i][1]])
                 if (tmpPoint in vUsed):
@@ -84,6 +90,8 @@ def parseOBJ(objPath: str) -> dict:
                     indices[-1].append(len(vUsed))
                     vUsed.append(tmpPoint)
                     vnUsed.append(normal)
+                for j in vnUsed:
+                    print(j.x, j.y, j.z)
         elif (a[0] in ["g", "o", "s", "vp", "vn", "usemtl", "mtllib"]):
             # ignore this crap
             pass
