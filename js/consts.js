@@ -29,7 +29,7 @@ var ZFar = 0;
 
 if (flag == "sasha_20k") {
     ZFar = -2000.0;
-    objUrl = "objects/sasha/sasha.obj";
+    objUrl = "objects/sasha/sasha_20000.obj";
     pngUrl = "objects/sasha/sasha_0.png";
 } else if (flag == "sasha_50k") {
     ZFar = -2000.0;
